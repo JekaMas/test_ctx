@@ -9,6 +9,7 @@ type IContextAggregate interface {
 	SetContext(ctx context.Context)
 }
 
+//go:generate mockgen -package mocks -destination mocks/a.go test_ctx/service IA
 type IA interface {
 	DoA() int
 	DoSomethingWithB() int
