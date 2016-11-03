@@ -10,5 +10,5 @@ type IA interface {
 }
 
 func A(ctx context.Context) IA {
-	return clone(ctx, FromContext(ctx).A).(IA)
+	return FromContext(ctx).IA(ctx)
 }

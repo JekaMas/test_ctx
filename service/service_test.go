@@ -40,16 +40,16 @@ func BenchmarkFromContext(b *testing.B) {
 	})
 }
 
-func BenchmarkCopy(b *testing.B) {
-	ctx := context.Background()
-	val := &AMock{}
-
-	b.RunParallel(func(pb *testing.PB) {
-		for pb.Next() {
-			clone(ctx, val)
-		}
-	})
-}
+//func BenchmarkCopy(b *testing.B) {
+//	ctx := context.Background()
+//	val := &AMock{}
+//
+//	b.RunParallel(func(pb *testing.PB) {
+//		for pb.Next() {
+//			clone(ctx, val)
+//		}
+//	})
+//}
 
 func BenchmarkAFromContext(b *testing.B) {
 	factory := &Factory{

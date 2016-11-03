@@ -34,14 +34,14 @@ func TestA_DoA(t *testing.T) {
 	fmt.Printf("result: %d\n", result)
 }
 
-func _TestA_DoA2(t *testing.T) {
+func TestA_DoA2(t *testing.T) {
 	mockCtrl := gomock.NewController(t)
 	defer mockCtrl.Finish()
+
 	mockB := mocks.NewMockIB(mockCtrl)
+	mockB.EXPECT().DoB().Return(9998)
 
-	mockB.EXPECT().DoB().Return(9999)
-
-	factory := &service.Factory{B: mockB}
+	factory := &service.TestFactory{B: mockB}
 	ctx := service.ToContext(context.Background(), factory)
 
 	result := newA(ctx).DoSomethingWithB()
