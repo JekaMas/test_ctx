@@ -14,6 +14,10 @@ func (this *AMock) DoA() int {
 	return 0
 }
 
+func (this *AMock) DoSomethingWithB() int {
+	return 0
+}
+
 func BenchmarkFromContext(b *testing.B) {
 	var key interface{} = "id5"
 	ctx := context.Background()
