@@ -24,6 +24,10 @@ type Factory struct {
 
 var KEY_FACTORY interface{} = "key_factory"
 
+func ToContext(ctx context.Context, factory *Factory) context.Context {
+	return context.WithValue(ctx, KEY_FACTORY, factory)
+}
+
 func copy(ctx context.Context, from interface{}) interface{} {
 	val := reflect.ValueOf(from)
 	if val.Kind() == reflect.Ptr {

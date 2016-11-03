@@ -2,10 +2,10 @@ package a
 
 import (
 	"context"
-	"bigcore/test/service"
 	"testing"
 	"fmt"
 	"test_ctx/service/base"
+	"test_ctx/service"
 )
 
 type BMock struct {
@@ -22,7 +22,7 @@ func newA(ctx context.Context) *A {
 
 func TestA_DoA(t *testing.T) {
 	factory := &service.Factory{B: &BMock{}}
-	ctx := context.WithValue(context.Background(), service.KEY_FACTORY, factory)
+	ctx := service.ToContext(context.Background(), factory)
 
 	result := newA(ctx).DoA()
 	fmt.Printf("result: %d\n", result)

@@ -1,7 +1,7 @@
 package a
 
 import (
-	"bigcore/test/service"
+	"test_ctx/service"
 	"test_ctx/service/base"
 )
 

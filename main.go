@@ -1,10 +1,10 @@
 package main
 
 import (
-	"bigcore/test/service"
+	"test_ctx/service"
 	"context"
-	"bigcore/test/service/a"
-	"bigcore/test/service/b"
+	"test_ctx/service/a"
+	"test_ctx/service/b"
 	"fmt"
 )
 
