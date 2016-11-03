@@ -46,7 +46,7 @@ func BenchmarkCopy(b *testing.B) {
 
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
-			copy(ctx, val)
+			clone(ctx, val)
 		}
 	})
 }

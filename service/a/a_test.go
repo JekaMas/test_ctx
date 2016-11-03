@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"test_ctx/service/base"
 	"test_ctx/service"
+	"github.com/golang/mock/gomock"
+	"test_ctx/service/mocks"
 )
 
 type BMock struct {
@@ -13,11 +15,11 @@ type BMock struct {
 }
 
 func (this *BMock) DoB() int {
-	return 2
+	return 9999
 }
 
 func (this *BMock) DoSomethingWithA() int {
-	return 2
+	return 0
 }
 
 func newA(ctx context.Context) *A {
@@ -28,6 +30,20 @@ func TestA_DoA(t *testing.T) {
 	factory := &service.Factory{B: &BMock{}}
 	ctx := service.ToContext(context.Background(), factory)
 
-	result := newA(ctx).DoA()
+	result := newA(ctx).DoSomethingWithB()
+	fmt.Printf("result: %d\n", result)
+}
+
+func _TestA_DoA2(t *testing.T) {
+	mockCtrl := gomock.NewController(t)
+	defer mockCtrl.Finish()
+	mockB := mocks.NewMockIB(mockCtrl)
+
+	mockB.EXPECT().DoB().Return(9999)
+
+	factory := &service.Factory{B: mockB}
+	ctx := service.ToContext(context.Background(), factory)
+
+	result := newA(ctx).DoSomethingWithB()
 	fmt.Printf("result: %d\n", result)
 }
