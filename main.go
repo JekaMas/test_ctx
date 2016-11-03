@@ -14,8 +14,7 @@ func main() {
 		B: &b.B{},
 	}
 
-	ctx := context.Background()
-	ctx = context.WithValue(ctx, service.KEY_FACTORY, factory)
+	ctx := service.ToContext(context.Background(), factory)
 
 	result := service.A(ctx).DoA()
 	fmt.Printf("result: %d\n", result)

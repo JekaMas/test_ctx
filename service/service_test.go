@@ -38,7 +38,7 @@ func BenchmarkFromContext(b *testing.B) {
 
 func BenchmarkCopy(b *testing.B) {
 	ctx := context.Background()
-	val := &AMock{base.BaseService{ctx}}
+	val := &AMock{}
 
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
@@ -63,7 +63,6 @@ func BenchmarkAFromContext(b *testing.B) {
 	ctx = context.WithValue(ctx, "id8", 1)
 	ctx = context.WithValue(ctx, "id9", 1)
 	ctx = context.WithValue(ctx, "id10", 1)
-
 
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
