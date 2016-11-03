@@ -16,6 +16,10 @@ func (this *BMock) DoB() int {
 	return 2
 }
 
+func (this *BMock) DoSomethingWithA() int {
+	return 2
+}
+
 func newA(ctx context.Context) *A {
 	return &A{base.BaseService{ctx}}
 }
