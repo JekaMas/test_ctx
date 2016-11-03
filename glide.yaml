@@ -1,0 +1,6 @@
+package: catalog_api
+import:
+- package: github.com/golang/mock
+  version: 06883d979f10cc178f2716846215c8cf90f9e363
+  subpackages:
+  - gomock

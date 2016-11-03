@@ -1,0 +1,8 @@
+hash: 1aa0147c5905e88cb6f2a4fd8083df7e2e93ca810fda2d0a4c4ab63fdbaf7560
+updated: 2016-11-03T18:33:30.108506186+07:00
+imports:
+- name: github.com/golang/mock
+  version: 06883d979f10cc178f2716846215c8cf90f9e363
+  subpackages:
+  - gomock
+testImports: []
