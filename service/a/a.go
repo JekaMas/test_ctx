@@ -9,6 +9,10 @@ type A struct {
 	base.BaseService
 }
 
-func (this *A) DoA() int {
+func (this *A) DoSomethingWithB() int {
 	return service.B(this.Ctx).DoB()
+}
+
+func (this *A) DoA() int {
+	return 10
 }

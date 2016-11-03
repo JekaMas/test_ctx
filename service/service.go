@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"reflect"
+	"fmt"
 )
 
 type IContextAggregate interface {
@@ -11,10 +12,12 @@ type IContextAggregate interface {
 
 type IA interface {
 	DoA() int
+	DoSomethingWithB() int
 }
 
 type IB interface {
 	DoB() int
+	DoSomethingWithA() int
 }
 
 type Factory struct {

@@ -16,6 +16,6 @@ func main() {
 
 	ctx := service.ToContext(context.Background(), factory)
 
-	result := service.A(ctx).DoA()
-	fmt.Printf("result: %d\n", result)
+	fmt.Printf("result: %d\n", service.A(ctx).DoSomethingWithB())
+	fmt.Printf("result: %d\n", service.B(ctx).DoSomethingWithA())
 }
