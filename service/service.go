@@ -34,10 +34,10 @@ func copy(ctx context.Context, from interface{}) interface{} {
 	return result
 }
 
-func AFromContext(ctx context.Context) IA {
+func A(ctx context.Context) IA {
 	return copy(ctx, ctx.Value(KEY_FACTORY).(*Factory).A).(IA)
 }
 
-func BFromContext(ctx context.Context) IB {
+func B(ctx context.Context) IB {
 	return copy(ctx, ctx.Value(KEY_FACTORY).(*Factory).B).(IB)
 }

@@ -5,6 +5,7 @@ import (
 	"context"
 	"bigcore/test/service/a"
 	"bigcore/test/service/b"
+	"fmt"
 )
 
 func main() {
@@ -16,6 +17,6 @@ func main() {
 	ctx := context.Background()
 	ctx = context.WithValue(ctx, service.KEY_FACTORY, factory)
 
-	service.AFromContext(ctx).DoA()
-	service.BFromContext(ctx).DoB()
+	result := service.A(ctx).DoA()
+	fmt.Printf("result: %d\n", result)
 }

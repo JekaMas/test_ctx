@@ -1,16 +1,13 @@
 package b
 
 import (
-	"context"
+	"test_ctx/service/base"
 )
 
 type B struct{
-	Ctx context.Context
+	base.BaseService
 }
 
-func (this *B) SetContext(ctx context.Context) {
-	this.Ctx = ctx
-}
 
 func (*B) DoB() int {
 	return 1

@@ -1,18 +1,14 @@
 package a
 
 import (
-	"context"
 	"bigcore/test/service"
+	"test_ctx/service/base"
 )
 
 type A struct {
-	Ctx context.Context
-}
-
-func (this *A) SetContext(ctx context.Context) {
-	this.Ctx = ctx
+	base.BaseService
 }
 
 func (this *A) DoA() int {
-	return service.BFromContext(this.Ctx).DoB()
+	return service.B(this.Ctx).DoB()
 }

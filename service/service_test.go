@@ -3,17 +3,16 @@ package service
 import (
 	"testing"
 	"context"
+	"test_ctx/service/base"
 )
 
 type AMock struct {
-	Ctx context.Context
+	base.BaseService
 }
 
-func (this *AMock) SetContext(ctx context.Context) {
-	this.Ctx = ctx
+func (this *AMock) DoA() int {
+	return 0
 }
-
-func (this *AMock) DoA() {}
 
 func BenchmarkAFromContext(b *testing.B) {
 	factory := &Factory{
@@ -23,7 +22,7 @@ func BenchmarkAFromContext(b *testing.B) {
 
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
-			AFromContext(ctx)
+			A(ctx)
 		}
 	})
 }
