@@ -16,6 +16,26 @@ type Factory struct {
 	B IB
 }
 
+func ToContext(ctx context.Context, factory IFactory) context.Context {
+	return context.WithValue(ctx, KEY_SERVICE_FACTORY, factory)
+}
+
+func FromContext(ctx context.Context) IFactory {
+	return ctx.Value(KEY_SERVICE_FACTORY).(IFactory)
+}
+
+func (*Factory) CloneService(ctx context.Context, from interface{}) interface{} {
+	val := reflect.ValueOf(from)
+	if val.Kind() == reflect.Ptr {
+		val = reflect.Indirect(val)
+	}
+	result := reflect.New(val.Type()).Interface()
+	result.(IContextAggregate).SetContext(ctx)
+	return result
+}
+
+
+// generate me
 type IFactory interface {
 	IA(ctx context.Context) IA
 	IB(ctx context.Context) IB
@@ -40,23 +60,5 @@ func (this *TestFactory) IA(ctx context.Context) IA {
 
 func (this *TestFactory) IB(ctx context.Context) IB {
 	return this.B
-}
-
-func ToContext(ctx context.Context, factory IFactory) context.Context {
-	return context.WithValue(ctx, KEY_SERVICE_FACTORY, factory)
-}
-
-func FromContext(ctx context.Context) IFactory {
-	return ctx.Value(KEY_SERVICE_FACTORY).(IFactory)
-}
-
-func (*Factory) CloneService(ctx context.Context, from interface{}) interface{} {
-	val := reflect.ValueOf(from)
-	if val.Kind() == reflect.Ptr {
-		val = reflect.Indirect(val)
-	}
-	result := reflect.New(val.Type()).Interface()
-	result.(IContextAggregate).SetContext(ctx)
-	return result
 }
 
