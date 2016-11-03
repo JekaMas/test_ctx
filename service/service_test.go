@@ -18,7 +18,7 @@ func BenchmarkAFromContext(b *testing.B) {
 	factory := &Factory{
 		A: &AMock{},
 	}
-	ctx := context.WithValue(context.Background(), KEY_FACTORY, factory)
+	ctx := ToContext(context.Background(), factory)
 
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
