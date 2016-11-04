@@ -17,6 +17,7 @@ type IContextAggregate interface {
 	SetContext(ctx context.Context)
 }
 
+// Helper, just to hide key
 func ToContext(ctx context.Context, factory *Factory) context.Context {
 	return context.WithValue(ctx, KEY_SERVICE_FACTORY, factory)
 }
@@ -29,6 +30,7 @@ func fromContext(ctx context.Context) *Factory {
 	return factory.(*Factory)
 }
 
+// this method create copy of
 // 60 ns/op   16 B/op   1 allocs/op  on my mac
 func cloneService(ctx context.Context, from interface{}) interface{} {
 	val := reflect.ValueOf(from)
