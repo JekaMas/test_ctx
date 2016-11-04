@@ -46,7 +46,7 @@ func BenchmarkClone(b *testing.B) {
 
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
-			CloneService(ctx, val)
+			cloneService(ctx, val)
 		}
 	})
 }

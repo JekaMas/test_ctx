@@ -21,7 +21,7 @@ func ToContext(ctx context.Context, factory *Factory) context.Context {
 	return context.WithValue(ctx, KEY_SERVICE_FACTORY, factory)
 }
 
-func FromContext(ctx context.Context) *Factory {
+func fromContext(ctx context.Context) *Factory {
 	factory :=  ctx.Value(KEY_SERVICE_FACTORY)
 	if factory == nil {
 		panic("You forgot to call common.SetupServices")
@@ -29,7 +29,7 @@ func FromContext(ctx context.Context) *Factory {
 	return factory.(*Factory)
 }
 
-func CloneService(ctx context.Context, from interface{}) interface{} {
+func cloneService(ctx context.Context, from interface{}) interface{} {
 	val := reflect.ValueOf(from)
 	if strings.Contains(val.Type().String(), "mock") {
 		return from

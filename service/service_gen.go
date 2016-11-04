@@ -15,34 +15,34 @@ type IFactory interface {
 
 // internal methods
 func (this *Factory) Product(ctx context.Context) IProduct {
-	return CloneService(ctx, this.IProduct).(IProduct)
+	return cloneService(ctx, this.IProduct).(IProduct)
 }
 
 func (this *Factory) B(ctx context.Context) IImage {
-	return CloneService(ctx, this.IImage).(IImage)
+	return cloneService(ctx, this.IImage).(IImage)
 }
 
 
 // Getters
 func Product(ctx context.Context) IProduct {
-	return FromContext(ctx).Product(ctx)
+	return fromContext(ctx).Product(ctx)
 }
 
 func B(ctx context.Context) IImage {
-	return FromContext(ctx).B(ctx)
+	return fromContext(ctx).B(ctx)
 }
 
 
 // Mocks
 func MockProduct(ctx context.Context, ctrl *gomock.Controller) *mocks.MockIProduct {
 	mock := mocks.NewMockIProduct(ctrl)
-	FromContext(ctx).IProduct = mock
+	fromContext(ctx).IProduct = mock
 	return mock
 }
 
 func MockImage(ctx context.Context, ctrl *gomock.Controller) *mocks.MockIImage {
 	mock := mocks.NewMockIImage(ctrl)
-	FromContext(ctx).IImage = mock
+	fromContext(ctx).IImage = mock
 	return mock
 }
 
