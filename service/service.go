@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"reflect"
+	"strings"
 )
 
 var KEY_SERVICE_FACTORY interface{} = "key_service_factory"
@@ -12,20 +13,23 @@ type IContextAggregate interface {
 }
 
 type Factory struct {
-	A IA
-	B IB
+	IA
+	IB
 }
 
-func ToContext(ctx context.Context, factory IFactory) context.Context {
+func ToContext(ctx context.Context, factory *Factory) context.Context {
 	return context.WithValue(ctx, KEY_SERVICE_FACTORY, factory)
 }
 
-func FromContext(ctx context.Context) IFactory {
-	return ctx.Value(KEY_SERVICE_FACTORY).(IFactory)
+func FromContext(ctx context.Context) *Factory {
+	return ctx.Value(KEY_SERVICE_FACTORY).(*Factory)
 }
 
-func (*Factory) CloneService(ctx context.Context, from interface{}) interface{} {
+func CloneService(ctx context.Context, from interface{}) interface{} {
 	val := reflect.ValueOf(from)
+	if strings.Contains(val.Type().String(), "mock") {
+		return from
+	}
 	if val.Kind() == reflect.Ptr {
 		val = reflect.Indirect(val)
 	}
@@ -34,31 +38,7 @@ func (*Factory) CloneService(ctx context.Context, from interface{}) interface{} 
 	return result
 }
 
-
-// generate me
-type IFactory interface {
-	IA(ctx context.Context) IA
-	IB(ctx context.Context) IB
-}
-
-func (this *Factory) IA(ctx context.Context) IA {
-	return this.CloneService(ctx, this.A).(IA)
-}
-
-func (this *Factory) IB(ctx context.Context) IB {
-	return this.CloneService(ctx, this.B).(IB)
-}
-
-type TestFactory struct {
-	A IA
-	B IB
-}
-
-func (this *TestFactory) IA(ctx context.Context) IA {
-	return this.A
-}
-
-func (this *TestFactory) IB(ctx context.Context) IB {
-	return this.B
+func SetupServices(ctx context.Context) context.Context {
+	return ToContext(ctx, &Factory{})
 }
 

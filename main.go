@@ -10,8 +10,8 @@ import (
 
 func main() {
 	factory := &service.Factory{
-		A: &a.A{},
-		B: &b.B{},
+		IA: &a.A{},
+		IB: &b.B{},
 	}
 
 	ctx := service.ToContext(context.Background(), factory)

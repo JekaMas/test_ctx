@@ -14,6 +14,6 @@ func (this *B) DoSomethingWithA() int {
 }
 
 func (this *B) DoB() int {
-	return 1
+	return 1+1
 }
 
