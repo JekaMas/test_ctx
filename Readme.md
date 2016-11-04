@@ -5,7 +5,7 @@ Description:
 * Services are not global across application, but creating on place where you need them
 
 Logic of code:
-* To get service - call function in package "service": service.YourServiceName(ctx)
+* To get ProductService - call function in package "service": service.Product(ctx)
 * This will create new instance of service
 
 Unit tests:
