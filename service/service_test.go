@@ -6,15 +6,15 @@ import (
 	"test_ctx/service/base"
 )
 
-type AMock struct {
+type TestClass struct {
 	base.BaseService
 }
 
-func (this *AMock) DoA() int {
+func (this *TestClass) DoA() int {
 	return 0
 }
 
-func (this *AMock) DoSomethingWithB() int {
+func (this *TestClass) DoSomethingWithB() int {
 	return 0
 }
 
@@ -42,7 +42,7 @@ func BenchmarkFromContext(b *testing.B) {
 
 func BenchmarkClone(b *testing.B) {
 	ctx := context.Background()
-	val := &AMock{}
+	val := &TestClass{}
 
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
@@ -51,9 +51,9 @@ func BenchmarkClone(b *testing.B) {
 	})
 }
 
-func BenchmarkAFromContext(b *testing.B) {
+func BenchmarkProductFromContext(b *testing.B) {
 	factory := &Factory{
-		IA: &AMock{},
+		IProduct: &TestClass{},
 	}
 	ctx := context.Background()
 	ctx = context.WithValue(ctx, "id1", 1)
@@ -70,7 +70,7 @@ func BenchmarkAFromContext(b *testing.B) {
 
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
-			A(ctx)
+			Product(ctx)
 		}
 	})
 }

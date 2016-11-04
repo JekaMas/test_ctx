@@ -1,18 +1,18 @@
-package a
+package product
 
 import (
 	"test_ctx/service"
 	"test_ctx/service/base"
 )
 
-type A struct {
+type Product struct {
 	base.BaseService
 }
 
-func (this *A) DoSomethingWithB() int {
+func (this *Product) DoSomethingWithB() int {
 	return service.B(this.Ctx).DoB()
 }
 
-func (this *A) DoA() int {
+func (this *Product) DoA() int {
 	return 10
 }

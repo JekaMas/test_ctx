@@ -9,8 +9,8 @@ import (
 var KEY_SERVICE_FACTORY interface{} = "key_service_factory"
 
 type Factory struct {
-	IA
-	IB
+	IProduct
+	IImage
 }
 
 type IContextAggregate interface {

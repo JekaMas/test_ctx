@@ -3,19 +3,13 @@ package main
 import (
 	"test_ctx/service"
 	"context"
-	"test_ctx/service/a"
-	"test_ctx/service/b"
 	"fmt"
+	"test_ctx/common"
 )
 
 func main() {
-	factory := &service.Factory{
-		IA: &a.A{},
-		IB: &b.B{},
-	}
+	ctx := common.SetupServices(context.Background())
 
-	ctx := service.ToContext(context.Background(), factory)
-
-	fmt.Printf("result: %d\n", service.A(ctx).DoSomethingWithB())
+	fmt.Printf("result: %d\n", service.Product(ctx).DoSomethingWithB())
 	fmt.Printf("result: %d\n", service.B(ctx).DoSomethingWithA())
 }

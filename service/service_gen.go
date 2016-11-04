@@ -8,41 +8,41 @@ import (
 
 
 type IFactory interface {
-	IA(ctx context.Context) IA
-	IB(ctx context.Context) IB
+	IProduct(ctx context.Context) IProduct
+	IB(ctx context.Context) IImage
 }
 
 
 // internal methods
-func (this *Factory) A(ctx context.Context) IA {
-	return CloneService(ctx, this.IA).(IA)
+func (this *Factory) Product(ctx context.Context) IProduct {
+	return CloneService(ctx, this.IProduct).(IProduct)
 }
 
-func (this *Factory) B(ctx context.Context) IB {
-	return CloneService(ctx, this.IB).(IB)
+func (this *Factory) B(ctx context.Context) IImage {
+	return CloneService(ctx, this.IImage).(IImage)
 }
 
 
 // Getters
-func A(ctx context.Context) IA {
-	return FromContext(ctx).A(ctx)
+func Product(ctx context.Context) IProduct {
+	return FromContext(ctx).Product(ctx)
 }
 
-func B(ctx context.Context) IB {
+func B(ctx context.Context) IImage {
 	return FromContext(ctx).B(ctx)
 }
 
 
 // Mocks
-func MockA(ctx context.Context, ctrl *gomock.Controller) *mocks.MockIA {
-	mock := mocks.NewMockIA(ctrl)
-	FromContext(ctx).IA = mock
+func MockProduct(ctx context.Context, ctrl *gomock.Controller) *mocks.MockIProduct {
+	mock := mocks.NewMockIProduct(ctrl)
+	FromContext(ctx).IProduct = mock
 	return mock
 }
 
-func MockB(ctx context.Context, ctrl *gomock.Controller) *mocks.MockIB {
-	mock := mocks.NewMockIB(ctrl)
-	FromContext(ctx).IB = mock
+func MockImage(ctx context.Context, ctrl *gomock.Controller) *mocks.MockIImage {
+	mock := mocks.NewMockIImage(ctrl)
+	FromContext(ctx).IImage = mock
 	return mock
 }
 

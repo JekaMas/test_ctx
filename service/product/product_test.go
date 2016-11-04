@@ -1,4 +1,4 @@
-package a_test
+package product_test
 
 import (
 	"context"
@@ -23,10 +23,10 @@ func parallel(t *testing.T) {
 
 	ctx := common.SetupServices(context.Background())
 
-	mockB := service.MockB(ctx, mockCtrl)
+	mockB := service.MockImage(ctx, mockCtrl)
 	mockB.EXPECT().DoB().Return(9998)
 
-	result := service.A(ctx).DoSomethingWithB()
+	result := service.Product(ctx).DoSomethingWithB()
 	if result != 9998 {
 		t.Fail()
 	}
