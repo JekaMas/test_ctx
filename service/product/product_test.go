@@ -24,7 +24,7 @@ func parallel(t *testing.T) {
 	ctx := common.SetupServices(context.Background())
 
 	mockB := service.MockImage(ctx, mockCtrl)
-	mockB.EXPECT().DoB().Return(9998)
+	mockB.EXPECT().Resize().Return(9998)
 
 	result := service.Product(ctx).ResizeAllImages()
 	if result != 9998 {
