@@ -31,6 +31,8 @@ func fromContext(ctx context.Context) *Factory {
 
 func cloneService(ctx context.Context, from interface{}) interface{} {
 	val := reflect.ValueOf(from)
+
+	// TODO: remove from production code
 	if strings.Contains(val.Type().String(), "mock") {
 		return from
 	}
