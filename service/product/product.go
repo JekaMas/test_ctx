@@ -9,11 +9,13 @@ type Product struct {
 	base.BaseService
 }
 
+// Method which call another service
 func (this *Product) ResizeAllImages() int {
 	imageService := service.Image(this.Ctx)
 	return imageService.Resize()
 }
 
+// Independent Method
 func (this *Product) AttachImage() int {
 	return 10 + 10
 }
