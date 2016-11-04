@@ -9,7 +9,7 @@ import (
 
 type IFactory interface {
 	IProduct(ctx context.Context) IProduct
-	IB(ctx context.Context) IImage
+	IImage(ctx context.Context) IImage
 }
 
 // Getters
