@@ -22,7 +22,11 @@ func ToContext(ctx context.Context, factory *Factory) context.Context {
 }
 
 func FromContext(ctx context.Context) *Factory {
-	return ctx.Value(KEY_SERVICE_FACTORY).(*Factory)
+	factory :=  ctx.Value(KEY_SERVICE_FACTORY)
+	if factory == nil {
+		panic("You forgot to call common.SetupServices")
+	}
+	return factory.(*Factory)
 }
 
 func CloneService(ctx context.Context, from interface{}) interface{} {
@@ -38,7 +42,4 @@ func CloneService(ctx context.Context, from interface{}) interface{} {
 	return result
 }
 
-func SetupServices(ctx context.Context) context.Context {
-	return ToContext(ctx, &Factory{})
-}
 
