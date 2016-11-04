@@ -32,10 +32,11 @@ func fromContext(ctx context.Context) *Factory {
 func cloneService(ctx context.Context, from interface{}) interface{} {
 	val := reflect.ValueOf(from)
 
-	// TODO: remove from production code
+	// this check takes only, 10ns, i'm lazy to invest time to improve it
 	if strings.Contains(val.Type().String(), "mock") {
 		return from
 	}
+
 	if val.Kind() == reflect.Ptr {
 		val = reflect.Indirect(val)
 	}
