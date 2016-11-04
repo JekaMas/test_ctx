@@ -29,6 +29,7 @@ func fromContext(ctx context.Context) *Factory {
 	return factory.(*Factory)
 }
 
+// 60 ns/op   16 B/op   1 allocs/op  on my mac
 func cloneService(ctx context.Context, from interface{}) interface{} {
 	val := reflect.ValueOf(from)
 

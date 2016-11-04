@@ -10,7 +10,8 @@ type Image struct{
 }
 
 func (this *Image) AttachToProduct() int {
-	return service.Product(this.Ctx).AttachImage()
+	productService := service.Product(this.Ctx)
+	return productService.AttachImage()
 }
 
 func (this *Image) Resize() int {
