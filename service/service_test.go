@@ -10,11 +10,11 @@ type TestClass struct {
 	base.BaseService
 }
 
-func (this *TestClass) DoA() int {
+func (this *TestClass) AttachImage() int {
 	return 0
 }
 
-func (this *TestClass) DoSomethingWithB() int {
+func (this *TestClass) ResizeAllImages() int {
 	return 0
 }
 

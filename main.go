@@ -10,6 +10,6 @@ import (
 func main() {
 	ctx := common.SetupServices(context.Background())
 
-	fmt.Printf("result: %d\n", service.Product(ctx).DoSomethingWithB())
-	fmt.Printf("result: %d\n", service.B(ctx).DoSomethingWithA())
+	fmt.Printf("result: %d\n", service.Product(ctx).ResizeAllImages())
+	fmt.Printf("result: %d\n", service.Image(ctx).AttachToProduct())
 }

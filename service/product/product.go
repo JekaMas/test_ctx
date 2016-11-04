@@ -9,10 +9,10 @@ type Product struct {
 	base.BaseService
 }
 
-func (this *Product) DoSomethingWithB() int {
-	return service.B(this.Ctx).DoB()
+func (this *Product) ResizeAllImages() int {
+	return service.Image(this.Ctx).Resize()
 }
 
-func (this *Product) DoA() int {
+func (this *Product) AttachImage() int {
 	return 10
 }

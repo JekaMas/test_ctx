@@ -33,4 +33,3 @@ func MockImage(ctx context.Context, ctrl *gomock.Controller) *mocks.MockIImage {
 	fromContext(ctx).IImage = mock
 	return mock
 }
-

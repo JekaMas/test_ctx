@@ -9,11 +9,11 @@ type Image struct{
 	base.BaseService
 }
 
-func (this *Image) DoSomethingWithA() int {
-	return service.Product(this.Ctx).DoA()
+func (this *Image) AttachToProduct() int {
+	return service.Product(this.Ctx).AttachImage()
 }
 
-func (this *Image) DoB() int {
+func (this *Image) Resize() int {
 	return 1+1
 }
 
