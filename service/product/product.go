@@ -15,5 +15,5 @@ func (this *Product) ResizeAllImages() int {
 }
 
 func (this *Product) AttachImage() int {
-	return 10
+	return 10 + 10
 }
