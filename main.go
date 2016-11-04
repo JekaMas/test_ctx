@@ -10,6 +10,13 @@ import (
 func main() {
 	ctx := system.SetupServices(context.Background())
 
-	fmt.Printf("result: %d\n", service.Product(ctx).ResizeAllImages())
-	fmt.Printf("result: %d\n", service.Image(ctx).AttachToProduct())
+	// i was lazy to create handlers with context
+	// imagine that now you are in handler and already have context.
+	// let's create and call couple of services
+
+	resizeResult := service.Product(ctx).ResizeAllImages()
+	fmt.Printf("result: %d\n", resizeResult)
+
+	attachResult := service.Image(ctx).AttachToProduct()
+	fmt.Printf("result: %d\n", attachResult)
 }
