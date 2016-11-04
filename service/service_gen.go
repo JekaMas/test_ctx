@@ -6,7 +6,6 @@ import (
 	"test_ctx/service/mocks"
 )
 
-
 type IFactory interface {
 	IProduct(ctx context.Context) IProduct
 	IImage(ctx context.Context) IImage

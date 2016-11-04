@@ -9,3 +9,7 @@ Logic of code:
 * This will create new instance of service
 * Services are not global across application, but creating on place where you need them
 
+Unit tests:
+* product service contains one
+* `ctx := system.SetupServices(context.Background())` - add to context factory of services, same code you can find in main.go
+* generator must prepare methods for mocks creation: `mockB := service.MockImage(ctx, mockCtrl)`
