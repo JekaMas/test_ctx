@@ -12,26 +12,14 @@ type IFactory interface {
 	IB(ctx context.Context) IImage
 }
 
-
-// internal methods
-func (this *Factory) Product(ctx context.Context) IProduct {
-	return cloneService(ctx, this.IProduct).(IProduct)
-}
-
-func (this *Factory) B(ctx context.Context) IImage {
-	return cloneService(ctx, this.IImage).(IImage)
-}
-
-
 // Getters
 func Product(ctx context.Context) IProduct {
-	return fromContext(ctx).Product(ctx)
+	return cloneService(ctx, fromContext(ctx).IProduct).(IProduct)
 }
 
-func B(ctx context.Context) IImage {
-	return fromContext(ctx).B(ctx)
+func Image(ctx context.Context) IImage {
+	return cloneService(ctx, fromContext(ctx).IImage).(IImage)
 }
-
 
 // Mocks
 func MockProduct(ctx context.Context, ctrl *gomock.Controller) *mocks.MockIProduct {
