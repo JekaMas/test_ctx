@@ -41,16 +41,12 @@ func BenchmarkFromContext(b *testing.B) {
 }
 
 func BenchmarkClone(b *testing.B) {
-	factory := &Factory{
-		IA: &AMock{},
-	}
-
 	ctx := context.Background()
 	val := &AMock{}
 
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
-			factory.CloneService(ctx, val)
+			CloneService(ctx, val)
 		}
 	})
 }

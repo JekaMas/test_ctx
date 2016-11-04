@@ -13,22 +13,24 @@ func newA(ctx context.Context) *A {
 	return &A{base.BaseService{ctx}}
 }
 
-func TestGroupedParallel(t *testing.T) {
+func TestParallel(t *testing.T) {
 	for i := 0; i < 10000; i++ {
-		t.Run("Tet" + strconv.Itoa(i), func(t *testing.T) {
-			t.Parallel()
+		t.Run("Tet" + strconv.Itoa(i), parallel)
+	}
+}
 
-			mockCtrl := gomock.NewController(t)
-			defer mockCtrl.Finish()
+func parallel(t *testing.T) {
+	t.Parallel()
 
-			ctx := service.SetupServices(context.Background())
-			mockB := service.MockB(ctx, mockCtrl)
-			mockB.EXPECT().DoB().Return(9998)
+	mockCtrl := gomock.NewController(t)
+	defer mockCtrl.Finish()
 
-			result := newA(ctx).DoSomethingWithB()
-			if result != 9998 {
-				t.Fail()
-			}
-		})
+	ctx := service.SetupServices(context.Background())
+	mockB := service.MockB(ctx, mockCtrl)
+	mockB.EXPECT().DoB().Return(9998)
+
+	result := newA(ctx).DoSomethingWithB()
+	if result != 9998 {
+		t.Fail()
 	}
 }

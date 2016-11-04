@@ -6,11 +6,12 @@ import (
 	"test_ctx/service/mocks"
 )
 
-// generate me
+
 type IFactory interface {
 	IA(ctx context.Context) IA
 	IB(ctx context.Context) IB
 }
+
 
 // internal methods
 func (this *Factory) A(ctx context.Context) IA {

@@ -8,13 +8,13 @@ import (
 
 var KEY_SERVICE_FACTORY interface{} = "key_service_factory"
 
-type IContextAggregate interface {
-	SetContext(ctx context.Context)
-}
-
 type Factory struct {
 	IA
 	IB
+}
+
+type IContextAggregate interface {
+	SetContext(ctx context.Context)
 }
 
 func ToContext(ctx context.Context, factory *Factory) context.Context {
