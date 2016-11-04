@@ -6,7 +6,7 @@ import (
 	"test_ctx/service"
 	"github.com/golang/mock/gomock"
 	"strconv"
-	"test_ctx/common"
+	"test_ctx/common/system"
 )
 
 func TestParallel(t *testing.T) {
@@ -21,7 +21,7 @@ func parallel(t *testing.T) {
 	mockCtrl := gomock.NewController(t)
 	defer mockCtrl.Finish()
 
-	ctx := common.SetupServices(context.Background())
+	ctx := system.SetupServices(context.Background())
 
 	mockB := service.MockImage(ctx, mockCtrl)
 	mockB.EXPECT().Resize().Return(9998)
