@@ -31,10 +31,12 @@ func fromContext(ctx context.Context) *Factory {
 }
 
 // this method create copy of
-// 60 ns/op   16 B/op   1 allocs/op  on my mac
+// 60 ns/op   16 B/op   1 allocs/op
 func cloneService(ctx context.Context, from interface{}) interface{} {
 	val := reflect.ValueOf(from)
 
+	// yes it's dirty hack for don't copy mock objects
+	// new instance lose all internal objects, this is reason why i don't copy mocks and set context manually
 	// this check takes only, 10ns, i'm lazy to invest time to improve it
 	if strings.Contains(val.Type().String(), "mock") {
 		return from
